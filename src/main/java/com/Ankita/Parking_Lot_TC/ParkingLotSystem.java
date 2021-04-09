@@ -8,16 +8,42 @@ public class ParkingLotSystem {
     public ParkingLotSystem() {
     }
 
-    public boolean park(Object vehicle) {
+    public void park(Object vehicle) throws ParkingLotException {
+        if(this.vehicle!=null){
+            throw  new ParkingLotException("Parking Lot is full");
+        }
         this.vehicle=vehicle;
-        return true;
+
     }
 
-    public boolean unPark(Object vehicle) {
+    public boolean isVehicleParked(Object vehicle) {
 
-        if(this.vehicle.equals(vehicle)){
+        if(this.vehicle.equals(vehicle))
+        {
             return true;
         }
         return false;
     }
+
+
+    public void mist(Object vehicle) throws ParkingLotException {
+        if(vehicle==null)
+        {
+            throw new ParkingLotException("Vehicle is not present in The lot");
+        }
+
+
+    }
+
+    public boolean unPark(Object vehicle) {
+
+        if (vehicle!=null) {
+            if (this.vehicle.equals(vehicle)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

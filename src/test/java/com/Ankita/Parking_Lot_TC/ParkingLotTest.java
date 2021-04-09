@@ -2,26 +2,87 @@ package com.Ankita.Parking_Lot_TC;
 
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class ParkingLotTest {
 
-    @Test
-    public void givenVehicle_WhenParked_ShouldReturnTrue() {
-      ParkingLotSystem parkinglotsystem = new ParkingLotSystem();
-      boolean isParked = parkinglotsystem.park(new Object());
-      Assert.assertTrue(isParked);
+    ParkingLotSystem parkinglotsystem=null;
+    Object vehicle=null;
+
+    @Before
+    public void setUp() throws Exception{
+        vehicle = new Object();
+        parkinglotsystem = new ParkingLotSystem();
+
 
     }
 
     @Test
-    public void givenVehicle_WhenUnParked_ShouldReturnFalse() {
-        Object vehicle = new Object();
-        ParkingLotSystem parkinglotsystem = new ParkingLotSystem();
-        parkinglotsystem.park(vehicle);
-        boolean isUnpark = parkinglotsystem.unPark(vehicle);
-        Assert.assertTrue(isUnpark);
+    public void givenVehicle_WhenParked_ShouldReturnTrue() {
+
+
+        try {
+             parkinglotsystem.park(vehicle);
+             boolean isParked=parkinglotsystem.isVehicleParked(vehicle);
+             Assert.assertTrue(isParked);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void givenVehicle_WhenAlreadyParked_ShouldReturnFalse(){
+        try {
+            parkinglotsystem.park(vehicle);
+            parkinglotsystem.park(new Object());
+        } catch (ParkingLotException e) {
+            Assert.assertEquals("Parking Lot is full",e.getMessage());
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    @Test
+    public void givenVehicle_WhenUnParked_ShouldReturnTrue() {
+        try {
+            parkinglotsystem.park(vehicle);
+            boolean isUnpark = parkinglotsystem.unPark(vehicle);
+            Assert.assertTrue(isUnpark);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void givenVehicle_WhenNotPresent_ShouldReturnMessage(){
+        try {
+            parkinglotsystem.mist(vehicle);
+            parkinglotsystem.mist(new Object());
+        } catch (ParkingLotException e) {
+            Assert.assertEquals("Vehicle is not present in The lot",e.getMessage());
+            e.printStackTrace();
+        }
+
+
+    }
+    @Test
+    public void givenVehicle_WhenPresent_ShouldReturnTrue(){
+        try {
+            parkinglotsystem.park(vehicle);
+            boolean ispark=parkinglotsystem.unPark(vehicle);
+            Assert.assertTrue(ispark);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
