@@ -102,18 +102,37 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void theLot_isFull_shouldReturnFalse(){
+    public void theLot_isFull_shouldReturnFalse() {
         try {
             parkinglotsystem.lotCapacity(size);
             parkinglotsystem.lotCapacityNotFull(size);
         } catch (ParkingLotException e) {
             e.printStackTrace();
-            Assert.assertEquals("Parking Lot is full",e.getMessage());
+            Assert.assertEquals("Parking Lot is full", e.getMessage());
         }
+    }
 
+    @Test
+    public void theSpace_isThere_shouldReturnTrue() {
+        try {
+            parkinglotsystem.park(vehicle);
+            parkinglotsystem.lotCapacityNotFull(size);
+            boolean isfull = parkinglotsystem.lotCapacity(size);
+            Assert.assertTrue(isfull);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 
-
-
+        @Test
+        public void thespace_isFthere_shouldReturnFalse(){
+            try {
+                parkinglotsystem.park(vehicle);
+                parkinglotsystem.lotCapacityNotFull(size);
+            } catch (ParkingLotException e) {
+                e.printStackTrace();
+                Assert.assertEquals("Parking Lot is not full",e.getMessage());
+            }
 
     }
 

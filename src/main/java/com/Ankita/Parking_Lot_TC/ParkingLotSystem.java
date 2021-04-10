@@ -51,7 +51,7 @@ public class ParkingLotSystem {
 
     public void lotCapacityNotFull(int size) throws ParkingLotException {
         if(size<0){
-            throw new ParkingLotException("Parking Lot is full");
+            throw new ParkingLotException("Parking Lot is not full");
         }
     }
 
