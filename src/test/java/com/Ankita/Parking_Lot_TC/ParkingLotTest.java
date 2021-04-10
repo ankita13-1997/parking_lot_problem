@@ -10,6 +10,7 @@ public class ParkingLotTest {
 
     ParkingLotSystem parkinglotsystem=null;
     Object vehicle=null;
+    int size;
 
     @Before
     public void setUp() throws Exception{
@@ -40,7 +41,7 @@ public class ParkingLotTest {
             parkinglotsystem.park(vehicle);
             parkinglotsystem.park(new Object());
         } catch (ParkingLotException e) {
-            Assert.assertEquals("Parking Lot is full",e.getMessage());
+            Assert.assertEquals("Parking Lot has that vehicle",e.getMessage());
             e.printStackTrace();
         }
 
@@ -64,8 +65,8 @@ public class ParkingLotTest {
     @Test
     public void givenVehicle_WhenNotPresent_ShouldReturnMessage(){
         try {
-            parkinglotsystem.mist(vehicle);
-            parkinglotsystem.mist(new Object());
+            parkinglotsystem.isVehiclePresentInLot(vehicle);
+            parkinglotsystem.isVehiclePresentInLot(new Object());
         } catch (ParkingLotException e) {
             Assert.assertEquals("Vehicle is not present in The lot",e.getMessage());
             e.printStackTrace();
@@ -74,17 +75,48 @@ public class ParkingLotTest {
 
     }
     @Test
-    public void givenVehicle_WhenPresent_ShouldReturnTrue(){
+    public void givenVehicle_WhenPresent_ShouldReturnTrue() {
         try {
             parkinglotsystem.park(vehicle);
-            boolean ispark=parkinglotsystem.unPark(vehicle);
+            boolean ispark = parkinglotsystem.unPark(vehicle);
             Assert.assertTrue(ispark);
         } catch (ParkingLotException e) {
             e.printStackTrace();
         }
+    }
+
+
+     @Test
+     public void theLot_isFull_shouldReturnTrue(){
+         try {
+             parkinglotsystem.lotCapacityNotFull(size);
+             boolean isfull=parkinglotsystem.lotCapacity(size);
+             Assert.assertTrue(isfull);
+         } catch (ParkingLotException e) {
+             e.printStackTrace();
+         }
+
+
 
 
     }
+
+    @Test
+    public void theLot_isFull_shouldReturnFalse(){
+        try {
+            parkinglotsystem.lotCapacity(size);
+            parkinglotsystem.lotCapacityNotFull(size);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+            Assert.assertEquals("Parking Lot is full",e.getMessage());
+        }
+
+
+
+
+
+    }
+
 
 
 
