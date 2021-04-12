@@ -9,13 +9,13 @@ import org.junit.Test;
 public class ParkingLotTest {
 
     ParkingLotSystem parkinglotsystem=null;
-    Object vehicle=null;
+    Object vehicle = new Object();
     int size;
 
     @Before
     public void setUp() throws Exception{
         vehicle = new Object();
-        parkinglotsystem = new ParkingLotSystem();
+        parkinglotsystem = new ParkingLotSystem(2);
 
 
     }
@@ -125,7 +125,7 @@ public class ParkingLotTest {
     }
 
         @Test
-        public void thespace_isFthere_shouldReturnFalse(){
+        public void thespace_isiFthere_shouldReturnFalse(){
             try {
                 parkinglotsystem.park(vehicle);
                 parkinglotsystem.lotCapacityNotFull(size);
@@ -136,6 +136,36 @@ public class ParkingLotTest {
 
     }
 
+    @Test
+    public void givenThat_whenParkingLot_isFull_shouldInform_toOwner(){
+       ParkingLotOwner owner = new ParkingLotOwner();
+        parkinglotsystem.registerOwner(owner);
+        try {
+            parkinglotsystem.park(vehicle);
+            parkinglotsystem.park(new Object());
+            boolean capacityFull=owner.isCapacityFull();
+            Assert.assertTrue(capacityFull);
+        } catch (ParkingLotException e) {}
+
+
+
+    }
+
+    @Test
+    public void givenCapacity_is2_shouldBeAbleToPark2Vehicle(){
+        Object vehicle2 = new Object();
+        parkinglotsystem.setCapacity(2);
+        try {
+            parkinglotsystem.park(vehicle);
+            parkinglotsystem.park(vehicle2);
+            boolean isParked1=parkinglotsystem.isVehicleParked(vehicle);
+            boolean isParked2=parkinglotsystem.isVehicleParked(vehicle2);
+            Assert.assertTrue(isParked1 && isParked2);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
