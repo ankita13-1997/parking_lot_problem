@@ -14,6 +14,7 @@ public class ParkingLotSystem {
     private int actualCapapacity;
 
     private List vehicles;
+    private AirPortSecurity security;
 
     public ParkingLotSystem(int capacity) {
         this.vehicles=new ArrayList<>();
@@ -26,6 +27,11 @@ public class ParkingLotSystem {
 
     }
 
+    public void registerSecurity(AirPortSecurity airPortSecurity) {
+        this.security=airPortSecurity;
+
+    }
+
     public void setCapacity(int capacity) {
         this.actualCapapacity=capacity;
 
@@ -34,6 +40,7 @@ public class ParkingLotSystem {
     public void park(Object vehicle) throws ParkingLotException {
         if(this.currentCapacity==this.actualCapapacity){
             owner.capacityIsFull();
+            security.capacityIsFull();
             throw  new ParkingLotException("Parking Lot is that vehicle");
         }
         if(isVehicleParked(vehicle)){
