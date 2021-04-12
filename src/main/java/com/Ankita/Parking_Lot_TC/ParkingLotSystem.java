@@ -10,25 +10,21 @@ public class ParkingLotSystem {
     private  int currentCapacity;
     HashSet<Integer> carLot1 =new HashSet<Integer>();
     int length = carLot1.size();
-    private ParkingLotOwner owner;
+    private List<ParkingLotObserver> observer;
     private int actualCapapacity;
 
     private List vehicles;
-    private AirPortSecurity security;
+
 
     public ParkingLotSystem(int capacity) {
+        this.observer=new ArrayList<>();
         this.vehicles=new ArrayList<>();
         this.currentCapacity=0;
         this.actualCapapacity=capacity;
     }
 
-    public  void registerOwner(ParkingLotOwner owner) {
-        this.owner=owner;
-
-    }
-
-    public void registerSecurity(AirPortSecurity airPortSecurity) {
-        this.security=airPortSecurity;
+    public  void registerParkingLotObserver(ParkingLotObserver observers) {
+        this.observer.add(observers);
 
     }
 
@@ -39,8 +35,9 @@ public class ParkingLotSystem {
 
     public void park(Object vehicle) throws ParkingLotException {
         if(this.currentCapacity==this.actualCapapacity){
-            owner.capacityIsFull();
-            security.capacityIsFull();
+            for (ParkingLotObserver observers:observer) {
+                observers.capacityIsFull();
+            }
             throw  new ParkingLotException("Parking Lot is that vehicle");
         }
         if(isVehicleParked(vehicle)){
