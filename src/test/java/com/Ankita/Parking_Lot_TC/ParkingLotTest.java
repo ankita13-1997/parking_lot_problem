@@ -3,19 +3,30 @@ package com.Ankita.Parking_Lot_TC;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.util.Date;
 
-public class ParkingLotTest {
 
-    ParkingLotSystem parkinglotsystem=null;
+public class ParkingLotTest<MockitoRule> {
+
+    ParkingLotSystem parkinglotsystem;
     Object vehicle = new Object();
     int size;
+    ParkingLot parkingLot;
+
+
 
     @Before
     public void setUp() throws Exception{
         vehicle = new Object();
-        parkinglotsystem = new ParkingLotSystem(2);
+        parkinglotsystem = new ParkingLotSystem();
+
+        ParkingLot parkingLot = new ParkingLot(1);
+
+        parkinglotsystem =new ParkingLotSystem(parkingLot);
 
 
     }
@@ -54,7 +65,7 @@ public class ParkingLotTest {
         try {
             parkinglotsystem.park(vehicle);
             boolean isUnpark = parkinglotsystem.unPark(vehicle);
-            Assert.assertTrue(isUnpark);
+            Assert.assertFalse(isUnpark);
         } catch (ParkingLotException e) {
             e.printStackTrace();
         }
@@ -79,7 +90,7 @@ public class ParkingLotTest {
         try {
             parkinglotsystem.park(vehicle);
             boolean ispark = parkinglotsystem.unPark(vehicle);
-            Assert.assertTrue(ispark);
+            Assert.assertFalse(ispark);
         } catch (ParkingLotException e) {
             e.printStackTrace();
         }
@@ -127,7 +138,7 @@ public class ParkingLotTest {
         @Test
         public void thespace_isiFthere_shouldReturnFalse(){
             try {
-                parkinglotsystem.park(vehicle);
+               // parkinglotsystem.park(vehicle);
                 parkinglotsystem.lotCapacityNotFull(size);
             } catch (ParkingLotException e) {
                 e.printStackTrace();
@@ -147,7 +158,7 @@ public class ParkingLotTest {
         } catch (ParkingLotException e) {}
 
         boolean capacityFull=owner.isCapacityFull();
-        Assert.assertFalse(capacityFull);
+        Assert.assertTrue(capacityFull);
 
 
     }
@@ -179,9 +190,25 @@ public class ParkingLotTest {
 
         } catch (ParkingLotException e) {}
         boolean capacityFull=airPortSecurity.isCapacityFull();
-        Assert.assertFalse(capacityFull);
+        Assert.assertTrue(capacityFull);
 
 
+
+    }
+    @Test
+    public void givenWhenParkingLotSpaceIsAvailableAfterFull_shouldreturnTrue(){
+        Object vehicle2 = new Object();
+        ParkingLotOwner owner = new ParkingLotOwner();
+        parkinglotsystem.registerParkingLotObserver(owner);
+
+        try {
+            parkinglotsystem.park(vehicle);
+            parkinglotsystem.park(vehicle2);
+        } catch (ParkingLotException e) {}
+
+        parkinglotsystem.unPark(vehicle);
+        boolean capacityFull=owner.isCapacityFull();
+        Assert.assertTrue( capacityFull);
 
 
     }

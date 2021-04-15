@@ -1,27 +1,37 @@
 package com.Ankita.Parking_Lot_TC;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class ParkingLotSystem {
-
+    Scanner sc = new Scanner(System.in);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private  int currentCapacity;
+
     HashSet<Integer> carLot1 =new HashSet<Integer>();
     int length = carLot1.size();
     private List<ParkingLotObserver> observer;
     private int actualCapapacity;
+    public ArrayList<ParkingLot> parkingLotArrayList;
 
     private List vehicles;
 
 
-    public ParkingLotSystem(int capacity) {
+    public ParkingLotSystem(ParkingLot...parking) throws ParseException {
+        this.parkingLotArrayList=new ArrayList<>();
+        this.parkingLotArrayList.addAll(Arrays.asList(parking));
         this.observer=new ArrayList<>();
         this.vehicles=new ArrayList<>();
         this.currentCapacity=0;
-        this.actualCapapacity=capacity;
+
+
+
     }
+
+
+
 
     public  void registerParkingLotObserver(ParkingLotObserver observers) {
         this.observer.add(observers);
@@ -34,16 +44,17 @@ public class ParkingLotSystem {
     }
 
     public void park(Object vehicle) throws ParkingLotException {
+        if(isVehicleParked(vehicle)){
+            throw new ParkingLotException("vehicle is already parked");
+        }
+
         if(this.currentCapacity==this.actualCapapacity){
             for (ParkingLotObserver observers:observer) {
                 observers.capacityIsFull();
             }
-            throw  new ParkingLotException("Parking Lot is that vehicle");
+            throw  new ParkingLotException("Parking Lot has that vehicle");
         }
-        if(isVehicleParked(vehicle)){
-            throw new ParkingLotException("vehicle is already parked");
 
-        }
         this.currentCapacity++;
         this.vehicles.add(vehicle);
 
@@ -70,12 +81,15 @@ public class ParkingLotSystem {
 
     public boolean unPark(Object vehicle) {
 
-        if (vehicle!=null) {
+        if (vehicle!=null) return false;
             if (this.vehicles.contains(vehicle)) {
                 this.vehicles.remove(vehicle);
+                for (ParkingLotObserver observers:observer) {
+                    observers.capacityIsAvailable();
+                }
                 return true;
             }
-        }
+
         return false;
     }
 
