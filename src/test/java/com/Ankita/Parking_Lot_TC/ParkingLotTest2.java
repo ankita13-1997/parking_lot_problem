@@ -12,8 +12,7 @@ public class ParkingLotTest2 {
     Object vehicle = new Object();
     int size;
     ParkingLot parkingLot;
-
-
+    private String Handicape;
 
 
     @Before
@@ -30,8 +29,9 @@ public class ParkingLotTest2 {
 
 
         try {
-            parkingLot.park(vehicle);
-            //parkinglotsystem.park(vehicle);
+
+             parkinglotsystem.park(vehicle);
+             parkingLot.park(vehicle);
             boolean isParked = parkinglotsystem.isVehicleParked(vehicle);
             boolean isParkedinSlot = parkingLot.isVehicleparkedInSlot(vehicle);
             Assert.assertTrue(isParkedinSlot);
@@ -39,6 +39,41 @@ public class ParkingLotTest2 {
             e.printStackTrace();
         }
 
+
+    }
+
+    @Test
+    public void givenVehicle_shouldBe_EvenlyDirected_ToAllSpaces_shouldReturnTrue() throws ParkingLotException {
+       // parkinglotsystem.park(vehicle);
+        //parkingLot.park(vehicle);
+        parkingLot.unPark(vehicle);
+        boolean isSpaceavailable=parkingLot.isSpaceAvailable();
+        Assert.assertTrue(isSpaceavailable);
+
+
+    }
+
+    @Test
+    public void givenVehicle_shouldBe_EvenlyDirected_ToAllSpaces_shouldReturnfalse()  {
+        // parkinglotsystem.park(vehicle);
+        try {
+            parkingLot.park(vehicle);
+            parkingLot.unPark(vehicle);
+            boolean isSpaceavailable=parkingLot.isSpaceAvailable();
+            Assert.assertFalse(isSpaceavailable);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    @Test
+    public void givenHandicapeDriver_shouldBe_given_nearest_space(){
+         parkingLot.HandicapeSlot(Handicape);
+         boolean isParked=parkingLot.isLotHaveHandicape_vehicle(vehicle);
+         Assert.assertTrue(isParked);
 
     }
 
