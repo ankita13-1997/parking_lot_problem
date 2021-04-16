@@ -7,7 +7,7 @@ import java.util.*;
 
 public class ParkingLotSystem {
     Scanner sc = new Scanner(System.in);
-    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
     private  int currentCapacity;
 
     HashSet<Integer> carLot1 =new HashSet<Integer>();
@@ -19,6 +19,12 @@ public class ParkingLotSystem {
     private List vehicles;
 
 
+    public ParkingLotSystem(int capacity) {
+        this.observer=new ArrayList<>();
+        this.vehicles=new ArrayList<>();
+        this.currentCapacity=0;
+        this.actualCapapacity=capacity;
+    }
     public ParkingLotSystem(ParkingLot...parking) throws ParseException {
         this.parkingLotArrayList=new ArrayList<>();
         this.parkingLotArrayList.addAll(Arrays.asList(parking));

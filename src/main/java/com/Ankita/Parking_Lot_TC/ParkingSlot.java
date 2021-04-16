@@ -4,12 +4,12 @@ import java.time.LocalTime;
 
 public class ParkingSlot {
     int slotNumber;
-    String vehicle;
+    Object vehicle1=new Object();
     LocalTime entryTime;
 
-    public ParkingSlot(int slotNumber, String vehicle, LocalTime entryTime) {
+    public ParkingSlot(int slotNumber, Object vehicle1, LocalTime entryTime) {
         this.slotNumber = slotNumber;
-        this.vehicle = vehicle;
+        this.vehicle1 = vehicle1;
         this.entryTime = entryTime;
     }
 
@@ -21,12 +21,12 @@ public class ParkingSlot {
         this.slotNumber = slotNumber;
     }
 
-    public String getVehicle() {
-        return vehicle;
+    public Object getVehicle1() {
+        return vehicle1;
     }
 
-    public void setVehicle(String vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicle1(Object vehicle1) {
+        this.vehicle1 = vehicle1;
     }
 
     public LocalTime getEntryTime() {
@@ -41,7 +41,7 @@ public class ParkingSlot {
     public String toString() {
         return "ParkingSlot{" +
                 "slotNumber=" + slotNumber +
-                ", vehicle='" + vehicle + '\'' +
+                ", vehicle1='" + vehicle1 + '\'' +
                 ", entryTime=" + entryTime +
                 '}';
     }
