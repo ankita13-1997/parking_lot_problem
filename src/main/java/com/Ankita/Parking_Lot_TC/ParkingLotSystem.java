@@ -6,6 +6,7 @@ package com.Ankita.Parking_Lot_TC;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class ParkingLotSystem {
@@ -158,12 +159,11 @@ public class ParkingLotSystem {
     }
 
 
-    public ArrayList<Integer> searchForHandicapeDriver(ParkedVehicleDetails parkedVehicleDetails3) {
-        ArrayList<Integer> slotNumber=parkingLotArrayList.stream().filter(parkingLot -> parkingLot.
-                ParkingSLotList.stream().map(ParkingSlot ::getSlotNumber).
-                anyMatch( ParkingType ->ParkingType.equals(parkedVehicleDetails3))).findFirst().;
-
+    public ArrayList<List<Integer>> searchForHandicapeDriver(ParkedVehicleDetails parkedVehicleDetails3) {
+        return parkingLotArrayList.stream().map(parkingLot -> parkingLot.searchforHandicap(parkedVehicleDetails3)).
+                collect(Collectors.toCollection(ArrayList::new));
 
     }
 
-}
+
+    }

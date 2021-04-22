@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingLotFinalTest {
     public ParkingLotSystem parkingLotSystem;
@@ -237,7 +238,9 @@ public class ParkingLotFinalTest {
             parkingLotd.park_vehicle_slot(v3,parkedVehicleDetails3);
             parkingLotd.park_vehicle_slot(v4,parkedVehicleDetails3);
 
-            ArrayList<Integer> HandicapCars= parkingLotSystem.searchForHandicapeDriver(parkedVehicleDetails3);
+
+            ArrayList<List<Integer>> HandicapCars= parkingLotSystem.searchForHandicapeDriver(parkedVehicleDetails3);
+            Assert.assertEquals(2,HandicapCars.size());
 
         } catch (ParkingLotException e) {
             e.printStackTrace();
