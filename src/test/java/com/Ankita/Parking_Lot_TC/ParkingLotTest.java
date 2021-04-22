@@ -10,23 +10,20 @@ import java.text.ParseException;
 import java.util.Date;
 
 
-public class ParkingLotTest<MockitoRule> {
+public class ParkingLotTest{
 
-    ParkingLotSystem parkinglotsystem;
+    ParkingLotSystem parkinglotsystem =null;
     Object vehicle = new Object();
     int size;
-    ParkingLot parkingLot;
+
+
 
 
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws ParseException {
         vehicle = new Object();
         parkinglotsystem = new ParkingLotSystem();
-
-        ParkingLot parkingLot = new ParkingLot(1);
-
-        parkinglotsystem =new ParkingLotSystem(parkingLot);
 
 
     }
@@ -57,10 +54,11 @@ public class ParkingLotTest<MockitoRule> {
         }
 
 
-
     }
 
-    @Test
+
+
+     @Test
     public void givenVehicle_WhenUnParked_ShouldReturnTrue() {
         try {
             parkinglotsystem.park(vehicle);
@@ -73,7 +71,9 @@ public class ParkingLotTest<MockitoRule> {
 
     }
 
-    @Test
+
+
+     @Test
     public void givenVehicle_WhenNotPresent_ShouldReturnMessage(){
         try {
             parkinglotsystem.isVehiclePresentInLot(vehicle);
@@ -138,7 +138,7 @@ public class ParkingLotTest<MockitoRule> {
         @Test
         public void thespace_isiFthere_shouldReturnFalse(){
             try {
-               // parkinglotsystem.park(vehicle);
+                parkinglotsystem.park(vehicle);
                 parkinglotsystem.lotCapacityNotFull(size);
             } catch (ParkingLotException e) {
                 e.printStackTrace();
@@ -149,7 +149,7 @@ public class ParkingLotTest<MockitoRule> {
 
     @Test
     public void givenThat_whenParkingLot_isFull_shouldInform_toOwner(){
-       ParkingLotOwner owner = new ParkingLotOwner();
+         ParkingLotOwner owner = new ParkingLotOwner();
         parkinglotsystem.registerParkingLotObserver(owner);
         try {
             parkinglotsystem.park(vehicle);
@@ -158,7 +158,7 @@ public class ParkingLotTest<MockitoRule> {
         } catch (ParkingLotException e) {}
 
         boolean capacityFull=owner.isCapacityFull();
-        Assert.assertTrue(capacityFull);
+        Assert.assertFalse(capacityFull);
 
 
     }
@@ -190,7 +190,7 @@ public class ParkingLotTest<MockitoRule> {
 
         } catch (ParkingLotException e) {}
         boolean capacityFull=airPortSecurity.isCapacityFull();
-        Assert.assertTrue(capacityFull);
+        Assert.assertFalse(capacityFull);
 
 
 
@@ -208,7 +208,7 @@ public class ParkingLotTest<MockitoRule> {
 
         parkinglotsystem.unPark(vehicle);
         boolean capacityFull=owner.isCapacityFull();
-        Assert.assertTrue( capacityFull);
+        Assert.assertFalse(capacityFull);
 
 
     }

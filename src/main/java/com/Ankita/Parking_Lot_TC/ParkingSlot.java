@@ -1,15 +1,16 @@
 package com.Ankita.Parking_Lot_TC;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class ParkingSlot {
     int slotNumber;
-    Object vehicle1=new Object();
-    LocalTime entryTime;
+     vehicle vehicle;
+    LocalDateTime entryTime;
 
-    public ParkingSlot(int slotNumber, Object vehicle1, LocalTime entryTime) {
+    public ParkingSlot(int slotNumber, com.Ankita.Parking_Lot_TC.vehicle vehicle, LocalDateTime entryTime) {
         this.slotNumber = slotNumber;
-        this.vehicle1 = vehicle1;
+        this.vehicle = vehicle;
         this.entryTime = entryTime;
     }
 
@@ -21,19 +22,19 @@ public class ParkingSlot {
         this.slotNumber = slotNumber;
     }
 
-    public Object getVehicle1() {
-        return vehicle1;
+    public vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicle1(Object vehicle1) {
-        this.vehicle1 = vehicle1;
+    public void setVehicle(vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public LocalTime getEntryTime() {
+    public LocalDateTime getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(LocalTime entryTime) {
+    public void setEntryTime(LocalDateTime entryTime) {
         this.entryTime = entryTime;
     }
 
@@ -41,8 +42,10 @@ public class ParkingSlot {
     public String toString() {
         return "ParkingSlot{" +
                 "slotNumber=" + slotNumber +
-                ", vehicle1='" + vehicle1 + '\'' +
+                ", vehicle1='" + vehicle + '\'' +
                 ", entryTime=" + entryTime +
                 '}';
     }
+
+
 }
