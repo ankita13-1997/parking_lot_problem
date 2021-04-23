@@ -166,4 +166,9 @@ public class ParkingLotSystem {
     }
 
 
+    public ArrayList<List<Integer>> getLotList(ParkingSlotSorting sorting, ParkedVehicleAttribute parkedVehicleAttribute) {
+        return parkingLotArrayList.stream().map(parkingLot ->
+                parkingLot.getParkedVehicleInSlot(sorting, parkedVehicleAttribute)).
+                collect(Collectors.toCollection(ArrayList :: new));
     }
+}

@@ -17,6 +17,12 @@ com/Ankita/Parking_Lot_TC/vehicle.java
  com.Ankita.Parking_Lot_TC.vehicle
 com/Ankita/Parking_Lot_TC/AirPortSecurity.java
  com.Ankita.Parking_Lot_TC.AirPortSecurity
+com/Ankita/Parking_Lot_TC/sortByColorAndModel.java
+ com.Ankita.Parking_Lot_TC.sortByColorAndModel
+com/Ankita/Parking_Lot_TC/ParkingLotSorting.java
+ com.Ankita.Parking_Lot_TC.ParkingLotSorting
+com/Ankita/Parking_Lot_TC/SortByColor.java
+ com.Ankita.Parking_Lot_TC.SortByColor
 com/Ankita/Parking_Lot_TC/ParkingLotStatergies.java
  com.Ankita.Parking_Lot_TC.ParkingLotStatergies
 com/Ankita/Parking_Lot_TC/ParkedVehicleDetails.java
@@ -29,6 +35,10 @@ com/Ankita/Parking_Lot_TC/HandiCappedStatergy.java
  com.Ankita.Parking_Lot_TC.HandiCappedStatergy
 com/Ankita/Parking_Lot_TC/LargeVehicleStrategy.java
  com.Ankita.Parking_Lot_TC.LargeVehicleStrategy
+com/Ankita/Parking_Lot_TC/ParkingSlotSorting.java
+ com.Ankita.Parking_Lot_TC.ParkingSlotSorting
+com/Ankita/Parking_Lot_TC/SortBYMODEL.java
+ com.Ankita.Parking_Lot_TC.SortBYMODEL
 com/Ankita/Parking_Lot_TC/ParkingLotSystem.java
  com.Ankita.Parking_Lot_TC.ParkingLotSystem
 com/Ankita/Parking_Lot_TC/NormalStatergy.java

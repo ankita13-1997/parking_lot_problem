@@ -183,6 +183,7 @@ public class ParkingLotFinalTest {
             parkingLotSystem.unPark(v1);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
             Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v2));
         } catch (ParkingLotException e) {
             e.printStackTrace();
@@ -230,8 +231,79 @@ public class ParkingLotFinalTest {
     }
 
 
+
     @Test
-    public void shouldReturn_vehicles_ofTypeHandiCape_Parked_inLotBabdLotD_inParkingLot(){
+    public void shouldReturn_ListOfLocatnOfBMWCAR(){
+
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails3);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v5,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v6, parkedVehicleDetails2);
+            ParkedVehicleAttribute parkedVehicleAttribute=new ParkedVehicleAttribute(ParkedVehicleAttribute.VehicleModel.BMW,null);
+            ArrayList<List<Integer>> lotlist = parkingLotSystem.getLotList(ParkingSlotSorting.BY_MODEL, parkedVehicleAttribute);
+            Assert.assertEquals(2,lotlist.size());
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    @Test
+    public void shouldReturn_ListOfLocationOfWhiteCar(){
+
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
+            parkingLotSystem.unPark(v1);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4, parkedVehicleDetails2);
+            ParkedVehicleAttribute parkedVehicleAttribute=new ParkedVehicleAttribute(null,ParkedVehicleAttribute.VehicleColor.White);
+            ArrayList<List<Integer>> lotlist = parkingLotSystem.getLotList(ParkingSlotSorting.BY_COLOR, parkedVehicleAttribute);
+            Assert.assertEquals(2,lotlist.size());
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void shouldReturn_ListOfLocation_And_OtherDetails_OfBlue_TOYOTA_Car(){
+
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails3);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v5,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v6, parkedVehicleDetails2);
+            ParkedVehicleAttribute parkedVehicleAttribute=new ParkedVehicleAttribute(ParkedVehicleAttribute.VehicleModel.TOYOTA,ParkedVehicleAttribute.VehicleColor.blue);
+            ArrayList<List<Integer>> lotlist = parkingLotSystem.getLotList(ParkingSlotSorting.BY_COLOR_MODEL, parkedVehicleAttribute);
+            for (int i =0 ; i<lotlist.size() ;i++){
+                System.out.println(lotlist.get(i));
+            }
+
+            Assert.assertEquals(2,lotlist.size());
+
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @Test
+    public void shouldReturn_vehicles_ofTypeHandiCape_Parked_inLotBanddLotD_inParkingLot(){
         try {
             parkingLotb.park_vehicle_slot(v1,parkedVehicleDetails3);
             parkingLotb.park_vehicle_slot(v2,parkedVehicleDetails3);
@@ -248,6 +320,8 @@ public class ParkingLotFinalTest {
 
 
     }
+
+
 
 
 

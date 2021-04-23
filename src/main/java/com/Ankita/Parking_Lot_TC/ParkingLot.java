@@ -128,6 +128,10 @@ class ParkingLot {
 
 
     }
+
+    public List<Integer> getParkedVehicleInSlot(ParkingSlotSorting sorting, ParkedVehicleAttribute parkedVehicleAttribute){
+      return sorting.sorting.getLocation(this.ParkingSLotList,parkedVehicleAttribute);
+    }
 }
 
 
