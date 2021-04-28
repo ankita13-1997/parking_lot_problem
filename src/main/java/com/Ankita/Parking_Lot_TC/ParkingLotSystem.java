@@ -23,11 +23,11 @@ public class ParkingLotSystem {
         if (parkingLot.ParkingSLotList.stream().
                 filter(parkingSlot -> parkingSlot.getVehicle() == null).count() == 0) {
             this.isPakringFull = true;
-            throw new ParkingLotException("Parking Full", ParkingLotException.ExceptionType.PARKING_FULL);
+            throw new ParkingLotException("Parking Lot System Full", ParkingLotException.ExceptionType.PARKING_FULL);
 
         }
 
-        this.isPakringFull = true;
+        this.isPakringFull = false;
         return parkingLot;
     }
 

@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-04-28T20:45:05" hostname="DESKTOP-FCSHS5L" time="0.906">
+<testsuite name="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-04-28T22:01:14" hostname="DESKTOP-FCSHS5L" time="0.049">
   <properties/>
-  <testcase name="givenCar_When_UnParkedInTheGivenParkingLotShouldReturnTrue" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.875"/>
-  <testcase name="givenVehicleWhichIsNotPresentInLot_WhenUnParked_ShouldAMessage" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.025"/>
+  <testcase name="shouldReturn_ListOfLocation_And_OtherDetails_OfBlue_TOYOTA_Car" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.003"/>
+  <testcase name="should_ReturnAll_Vehicles_InParkingLotSystem" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.005"/>
+  <testcase name="givenCar_When_UnParkedInTheGivenParkingLotShouldReturnTrue" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.004"/>
+  <testcase name="givenVehicleWhichIsNotPresentInLot_WhenUnParked_ShouldAMessage" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.026"/>
   <testcase name="givenVehicle_WhenVehicleParkedInSlot_ShouldReturnSlotNumber" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.002"/>
-  <testcase name="givenCar_When_ParkedInTheGivenParkingLotShouldReturnTrue" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.001"/>
-  <testcase name="givenAVehicles_WhenParkingLotFull_ShouldThrowMessage" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenCar_When_ParkedInTheGivenParkingLotShouldReturnTrue" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.002"/>
+  <testcase name="givenAVehicles_WhenParkingLotFull_ShouldThrowMessage" classname="com.Ankita.Parking_Lot_TC.ParkingLotServiceTest" time="0.002"/>
+  <system-out><![CDATA[1
+ParkingSlot{slotNumber=1, vehicle1='com.Ankita.Parking_Lot_TC.vehicle@3501322b', entryTime=2021-04-29T03:31:14.320835100}
+ParkingSlot{slotNumber=2, vehicle1='com.Ankita.Parking_Lot_TC.vehicle@279d97ec', entryTime=2021-04-29T03:31:14.320835100}
+ParkingSlot{slotNumber=3, vehicle1='com.Ankita.Parking_Lot_TC.vehicle@56815e18', entryTime=2021-04-29T03:31:14.320835100}
+]]></system-out>
   <system-err><![CDATA[com.Ankita.Parking_Lot_TC.ParkingLotException: Vehicle is not in the lot
-	at com.Ankita.Parking_Lot_TC.ParkingLot.lambda$searchVehicle$1(ParkingLot.java:50)
+	at com.Ankita.Parking_Lot_TC.ParkingLot.lambda$searchVehicle$1(ParkingLot.java:49)
 	at java.base/java.util.Optional.orElseThrow(Optional.java:408)
-	at com.Ankita.Parking_Lot_TC.ParkingLot.searchVehicle(ParkingLot.java:50)
-	at com.Ankita.Parking_Lot_TC.ParkingLotServiceTest.givenVehicleWhichIsNotPresentInLot_WhenUnParked_ShouldAMessage(ParkingLotServiceTest.java:91)
+	at com.Ankita.Parking_Lot_TC.ParkingLot.searchVehicle(ParkingLot.java:49)
+	at com.Ankita.Parking_Lot_TC.ParkingLotServiceTest.givenVehicleWhichIsNotPresentInLot_WhenUnParked_ShouldAMessage(ParkingLotServiceTest.java:94)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

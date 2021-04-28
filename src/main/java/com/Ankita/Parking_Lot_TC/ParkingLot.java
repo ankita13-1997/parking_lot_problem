@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 class ParkingLot {
     public int parkingLotCapacity;
     List<ParkingSlot> ParkingSLotList = new ArrayList<ParkingSlot>();
-    Object parkedVehicles = new Object();
 
 
     public ParkingLot(int lotCapacity) {

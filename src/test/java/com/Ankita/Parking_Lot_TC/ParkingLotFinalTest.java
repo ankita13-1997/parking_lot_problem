@@ -74,12 +74,24 @@ public class ParkingLotFinalTest {
 
     }
     @Test
-    public void givenAVehicle_WhenParkedInParkingLot_ShouldReturnTrue(){
+    public void givenAVehicle_WhenParkedInParkingLot_ShouldReturnEqual(){
         try {
            parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
 
             int vehiclePresent = parkingLot0.searchVehicle(v1);
             Assert.assertEquals(1,vehiclePresent);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void givenAVehicle_WhenParkedInParkingLot_ShouldReturnTrue(){
+        try {
+            boolean isParked=parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            Assert.assertTrue(isParked);
+
         } catch (ParkingLotException e) {
             e.printStackTrace();
         }
@@ -96,6 +108,20 @@ public class ParkingLotFinalTest {
             Assert.assertEquals(1,vehiclePresent);
         } catch (ParkingLotException e) {
             e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void givenAVehicle_WhenUN_ParkedInParkingLotAndNotThere_inLot_ShouldReturnMessage(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            boolean unparkTheVehicle=parkingLotSystem.unPark(v2,parkedVehicleDetails1);
+            Assert.assertFalse(unparkTheVehicle);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
         }
 
 
@@ -119,7 +145,7 @@ public class ParkingLotFinalTest {
 
 
     @Test
-    public void ToFIndThe_vehicle_inTheParkingLot_shouldReturn_aMessage(){
+    public void GivenThe_vehicle_inTheParkingLot_WhenNotFoundshouldReturn_aMessage(){
         try {
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
 
@@ -129,6 +155,7 @@ public class ParkingLotFinalTest {
 
         } catch (ParkingLotException e) {
             e.printStackTrace();
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
 
         }
 
@@ -157,13 +184,29 @@ public class ParkingLotFinalTest {
     }
 
     @Test
-    public void get_Vehicle_Parked_when_DriverIS_ofHandicapeType(){
+    public void Given_Vehicle_Parked_when_DriverIS_ofHandicapeType(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
             parkingLotSystem.unPark(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v1));
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void Given_Vehicle_Parked_Will_Unpark_when_DriverIS_ofHandicapeType(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            boolean isUnpark=parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            Assert.assertTrue(isUnpark);
             Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v1));
         } catch (ParkingLotException e) {
             e.printStackTrace();
@@ -191,6 +234,26 @@ public class ParkingLotFinalTest {
 
     }
 
+    @Test
+    public void Given_Vehicle_Parked_ShouldUnpark_when_DriverIS_ofBigVehicles() throws ParkingLotException {
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            boolean isUnparked= parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
+            Assert.assertTrue(isUnparked);
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+            Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v2));
+        }
+
+    }
+
 
 
     @Test
@@ -208,6 +271,8 @@ public class ParkingLotFinalTest {
 
 
     }
+
+
 
 
     @Test

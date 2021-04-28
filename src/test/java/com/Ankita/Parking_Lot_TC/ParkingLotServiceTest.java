@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingLotServiceTest {
 
     @Rule
@@ -134,6 +137,56 @@ public class ParkingLotServiceTest {
         }
     }
 
+    @Test
+    public void shouldReturn_ListOfLocation_And_OtherDetails_OfBlue_TOYOTA_Car(){
 
+        try {
+            parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails2);
+            parkingLot0.park_vehicle_slot(v2,parkedVehicleDetails1);
+            parkingLot0.park_vehicle_slot(v3,parkedVehicleDetails3);
+            parkingLot0.park_vehicle_slot(v4,parkedVehicleDetails2);
+            parkingLot0.park_vehicle_slot(v5,parkedVehicleDetails1);
+            parkingLot0.park_vehicle_slot(v6, parkedVehicleDetails2);
+            ParkedVehicleAttribute parkedVehicleAttribute=new ParkedVehicleAttribute(ParkedVehicleAttribute.VehicleModel.TOYOTA,ParkedVehicleAttribute.VehicleColor.blue);
+           ArrayList<Integer> Lotlist = (ArrayList<Integer>) parkingLot0.getParkedVehicleInSlot(ParkingSlotSorting.BY_COLOR_MODEL, parkedVehicleAttribute);
+            for (int i =0 ; i<Lotlist.size() ;i++){
+                System.out.println(Lotlist.get(i));
+            }
+
+            Assert.assertEquals(1,Lotlist.size());
+
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+    @Test
+    public void should_ReturnAll_Vehicles_InParkingLotSystem() {
+        try {
+            parkingLot0.park_vehicle_slot(v1, parkedVehicleDetails1);
+            parkingLot0.park_vehicle_slot(v2, parkedVehicleDetails2);
+            parkingLot0.park_vehicle_slot(v3, parkedVehicleDetails3);
+
+            ArrayList<ParkingSlot> ListLot = parkingLot0.getAllVehicleInSlot();
+            for (int i = 0; i < ListLot.size(); i++) {
+                System.out.println(ListLot.get(i));
+            }
+
+            Assert.assertEquals(3, ListLot.size());
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
