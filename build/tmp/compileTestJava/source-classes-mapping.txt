@@ -1,6 +1,4 @@
-com/Ankita/Parking_Lot_TC/ParkingLotTest2.java
- com.Ankita.Parking_Lot_TC.ParkingLotTest2
-com/Ankita/Parking_Lot_TC/ParkingLotTest.java
- com.Ankita.Parking_Lot_TC.ParkingLotTest
+com/Ankita/Parking_Lot_TC/ParkingLotServiceTest.java
+ com.Ankita.Parking_Lot_TC.ParkingLotServiceTest
 com/Ankita/Parking_Lot_TC/ParkingLotFinalTest.java
  com.Ankita.Parking_Lot_TC.ParkingLotFinalTest

@@ -53,7 +53,7 @@ public class ParkingLotFinalTest {
                 ParkedVehicleAttribute.VehicleColor.red,
                 ParkedVehicleAttribute.VehicleModel.BMW);
 
-        v5=new vehicle("MRS.Chopra","DL489",
+        v6=new vehicle("MRS.Chopra","DL489",
                 ParkedVehicleAttribute.VehicleColor.red,
                 ParkedVehicleAttribute.VehicleModel.BMW);
 
@@ -161,7 +161,7 @@ public class ParkingLotFinalTest {
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
-            parkingLotSystem.unPark(v1);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
             Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v1));
@@ -178,9 +178,9 @@ public class ParkingLotFinalTest {
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
-            parkingLotSystem.unPark(v2);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
-            parkingLotSystem.unPark(v1);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
@@ -215,9 +215,9 @@ public class ParkingLotFinalTest {
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
-            parkingLotSystem.unPark(v2);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
-            parkingLotSystem.unPark(v1);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
             ArrayList<ArrayList<ParkingSlot>> parkedVehiclesList=parkingLotSystem.vehicleParkedInSystemBefore30min();
@@ -259,9 +259,9 @@ public class ParkingLotFinalTest {
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
-            parkingLotSystem.unPark(v2);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
-            parkingLotSystem.unPark(v1);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v4, parkedVehicleDetails2);

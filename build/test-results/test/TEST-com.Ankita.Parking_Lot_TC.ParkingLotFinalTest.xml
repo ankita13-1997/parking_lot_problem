@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.Ankita.Parking_Lot_TC.ParkingLotFinalTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-23T20:54:44" hostname="DESKTOP-FCSHS5L" time="0.063">
-  <properties/>
-  <testcase name="shouldReturn_ListOfLocation_And_OtherDetails_OfBlue_TOYOTA_Car" classname="com.Ankita.Parking_Lot_TC.ParkingLotFinalTest" time="0.063"/>
-  <system-out><![CDATA[[1]
-[]
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
