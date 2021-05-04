@@ -1,7 +1,6 @@
 package com.Ankita.Parking_Lot_TC;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class ParkingSlot {
     int slotNumber;
@@ -16,10 +15,6 @@ public class ParkingSlot {
 
     public int getSlotNumber() {
         return slotNumber;
-    }
-
-    public void setSlotNumber(int slotNumber) {
-        this.slotNumber = slotNumber;
     }
 
     public vehicle getVehicle() {

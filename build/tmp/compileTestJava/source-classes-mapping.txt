@@ -1,6 +1,6 @@
-com/Ankita/Parking_Lot_TC/ParkingLotFinalTest.java
- com.Ankita.Parking_Lot_TC.ParkingLotFinalTest
-com/Ankita/Parking_Lot_TC/ParkingLotObserVerNotifiaction.java
- com.Ankita.Parking_Lot_TC.ParkingLotObserVerNotifiaction
 com/Ankita/Parking_Lot_TC/ParkingLotServiceTest.java
  com.Ankita.Parking_Lot_TC.ParkingLotServiceTest
+com/Ankita/Parking_Lot_TC/ParkingLotSystemFinalTest.java
+ com.Ankita.Parking_Lot_TC.ParkingLotSystemFinalTest
+com/Ankita/Parking_Lot_TC/ParkingLotObserverNotification.java
+ com.Ankita.Parking_Lot_TC.ParkingLotObserverNotification

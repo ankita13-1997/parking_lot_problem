@@ -7,10 +7,14 @@ import java.util.stream.IntStream;
 public class LargeVehicleStrategy implements ParkingLotStatergies{
     @Override
     public ParkingLot getParkingLot(ArrayList<ParkingLot> parkingLotArrayList) {
-        for (ParkingLot parkingLot : parkingLotArrayList)
-            for (int i = 1; i < parkingLot.ParkingSLotList.size(); i++)
+        for (ParkingLot parkingLot : parkingLotArrayList) {
+            int i = 1;
+            while (i < parkingLot.ParkingSLotList.size()) {
                 if (parkingLot.ParkingSLotList.get(i).getVehicle() == null && parkingLot.ParkingSLotList.get(i + 1).getVehicle() == null)
                      return parkingLot;
+                i++;
+            }
+        }
         return null;
 
         }

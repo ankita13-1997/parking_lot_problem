@@ -7,14 +7,13 @@ import org.junit.Test;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-public class ParkingLotObserVerNotifiaction {
+public class ParkingLotObserverNotification {
+
 
     @Rule
     public MockitoRule mockitoRule= MockitoJUnit.rule();
 
     public ParkingLotSystem parkingLotSystem;
-
-
     public ParkingLot parkingLot0;
 
     public ParkedVehicleDetails parkedVehicleDetails1;
@@ -45,7 +44,7 @@ public class ParkingLotObserVerNotifiaction {
     }
 
     @Test
-    public void givenVehicleToPark_And_WhenParkingIsFull_Should_Inform_Observers() {
+    public void GivenVehicleToPark_AndWhenParkingIsFull_ShouldInformObservers() {
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails2);
@@ -60,7 +59,7 @@ public class ParkingLotObserVerNotifiaction {
     }
 
     @Test
-    public void givenVehicleToUnPark_And_WhenParkingIsFull_Should_Inform_Observers(){
+    public void GivenVehicleToUnPark_AndWhenParkingIsFull_ShouldInformObservers(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails2);
@@ -75,3 +74,6 @@ public class ParkingLotObserVerNotifiaction {
 
     }
 }
+
+
+

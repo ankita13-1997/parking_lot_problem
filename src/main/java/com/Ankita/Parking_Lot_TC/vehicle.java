@@ -18,37 +18,16 @@ public class vehicle {
         this.carModel = carModel;
     }
 
-    public String getOwner_FullNmae() {
-        return owner_FullNmae;
-    }
-
-    public void setOwner_FullNmae(String owner_FullNmae) {
-        this.owner_FullNmae = owner_FullNmae;
-    }
-
-    public String getCarNumber() {
-        return carNumber;
-    }
-
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
-    }
 
     public ParkedVehicleAttribute.VehicleColor getCarColor() {
         return carColor;
-    }
-
-    public void setCarColor(ParkedVehicleAttribute.VehicleColor carColor) {
-        this.carColor = carColor;
     }
 
     public ParkedVehicleAttribute.VehicleModel getCarModel() {
         return carModel;
     }
 
-    public void setCarModel(ParkedVehicleAttribute.VehicleModel carModel) {
-        this.carModel = carModel;
-    }
+
 
 
 }

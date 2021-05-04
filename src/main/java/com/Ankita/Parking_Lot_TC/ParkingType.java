@@ -1,9 +1,5 @@
 package com.Ankita.Parking_Lot_TC;
-
-
-
-
-    public enum ParkingType {
+public enum ParkingType {
     NORMAL(new NormalStatergy()),
     HANDICAPPED(new HandiCappedStatergy()),
     LARGE(new LargeVehicleStrategy());

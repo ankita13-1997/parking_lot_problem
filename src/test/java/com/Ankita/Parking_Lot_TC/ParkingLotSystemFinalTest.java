@@ -7,8 +7,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingLotFinalTest {
+public class ParkingLotSystemFinalTest {
     public ParkingLotSystem parkingLotSystem;
+    public ParkingLotSystem parkingLotSystem2;
 
 
     public ParkingLot parkingLot0;
@@ -59,6 +60,8 @@ public class ParkingLotFinalTest {
 
         parkingLot0=new ParkingLot(20);
         parkingLot1=new ParkingLot(20);
+        parkingLot2=new ParkingLot(3);
+
         parkingLotb=new ParkingLot(20);
         parkingLotc=new ParkingLot(20);
         parkingLotd=new ParkingLot(20);
@@ -68,6 +71,7 @@ public class ParkingLotFinalTest {
         parkedVehicleDetails3=new ParkedVehicleDetails(ParkingType.LARGE);
 
         parkingLotSystem = new ParkingLotSystem(parkingLot0,parkingLot1);
+        parkingLotSystem2 = new ParkingLotSystem(parkingLot2);
 
 
 
@@ -87,6 +91,19 @@ public class ParkingLotFinalTest {
     }
 
     @Test
+    public void givenAVehicle_WhenParkedInParkingLot_ShouldReturnNotEqual(){
+        try {
+            parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
+
+            int vehiclePresent = parkingLot0.searchVehicle(v2);
+            Assert.assertNotEquals(1,vehiclePresent);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
     public void givenAVehicle_WhenParkedInParkingLot_ShouldReturnTrue(){
         try {
             boolean isParked=parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
@@ -98,8 +115,24 @@ public class ParkingLotFinalTest {
 
     }
 
+
     @Test
-    public void givenAVehicle_WhenUN_ParkedInParkingLot_ShouldReturnTrue(){
+    public void givenAVehicle_WhenParkedInFullParkingLot_ShouldReturnMessage(){
+        try {
+            parkingLot2.park_vehicle_slot(v1,parkedVehicleDetails1);
+            parkingLot2.park_vehicle_slot(v2,parkedVehicleDetails1);
+            parkingLot2.park_vehicle_slot(v3,parkedVehicleDetails1);
+
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+            Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL,e.type);
+        }
+
+    }
+
+    @Test
+    public void givenAVehicle_WhenUNParkedInParkingLot_ShouldReturnTrue(){
         try {
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
             boolean unparkTheVehicle=parkingLot0.unPark(v1);
@@ -114,13 +147,26 @@ public class ParkingLotFinalTest {
     }
 
     @Test
-    public void givenAVehicle_WhenUN_ParkedInParkingLotAndNotThere_inLot_ShouldReturnMessage(){
+    public void givenAVehicle_WhenUNParkedInParkingLot_ShouldReturnFalse(){
+        try {
+            parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
+            boolean unparkTheVehicle=parkingLot0.unPark(v2);
+            Assert.assertFalse(unparkTheVehicle);
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void givenAVehicle_WhenUnParkedInParkingLotAndNotThereinLot_ShouldReturnMessage(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
             boolean unparkTheVehicle=parkingLotSystem.unPark(v2,parkedVehicleDetails1);
             Assert.assertFalse(unparkTheVehicle);
         } catch (ParkingLotException e) {
-            e.printStackTrace();
             Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
         }
 
@@ -128,7 +174,7 @@ public class ParkingLotFinalTest {
     }
 
     @Test
-    public void ToFIndThe_vehicle_inTheParkingLot_shouldReturn_true(){
+    public void GivenVehicleInTheParkingLot_WhenSearched_shouldReturnTrue(){
         try {
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
             parkingLot0.park_vehicle_slot(v2,parkedVehicleDetails1);
@@ -138,6 +184,7 @@ public class ParkingLotFinalTest {
 
         } catch (ParkingLotException e) {
             e.printStackTrace();
+
         }
 
 
@@ -145,7 +192,7 @@ public class ParkingLotFinalTest {
 
 
     @Test
-    public void GivenThe_vehicle_inTheParkingLot_WhenNotFoundshouldReturn_aMessage(){
+    public void GivenTheVehicle_InTheParkingLotWhenNotFoundShouldReturn_aMessage(){
         try {
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
 
@@ -163,8 +210,9 @@ public class ParkingLotFinalTest {
     }
 
 
+
     @Test
-    public void get_vehicle_Parked_inEvenly_Manner_InParkingLot(){
+    public void GivenVehicle_WhenParked_ShouldParkInEvenlyMannerInParkingLot(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails2);
@@ -178,13 +226,14 @@ public class ParkingLotFinalTest {
 
         } catch (ParkingLotException e) {
             e.printStackTrace();
+
         }
 
 
     }
 
     @Test
-    public void Given_Vehicle_Parked_when_DriverIS_ofHandicapeType(){
+    public void GivenVehicle_WhenParkedWhenDriverIsOfHandicapType_ShouldReturnEqual(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
@@ -194,20 +243,52 @@ public class ParkingLotFinalTest {
             Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v1));
         } catch (ParkingLotException e) {
             e.printStackTrace();
+
         }
 
 
     }
 
     @Test
-    public void Given_Vehicle_Parked_Will_Unpark_when_DriverIS_ofHandicapeType(){
+    public void GivenVehicle_WhenParkedWhenDriverIsOfHandicapeType_ShouldReturnNotEqual(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            Assert.assertNotEquals(parkingLot2,parkingLotSystem.search_Vehicle(v1));
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+
+        }
+
+
+    }
+    @Test
+    public void GivenVehicle_WhenParkedWhenDriverIsOfHandicapType_ShouldReturnMessage_WhenNotFound(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+
+        } catch (ParkingLotException e) {
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
+        }
+
+
+    }
+
+    @Test
+    public void GivenVehicle_WhenParkedWillUnparkWhenDriverIsOfHandicapeType_ShouldReturnTrue(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
             boolean isUnpark=parkingLotSystem.unPark(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             Assert.assertTrue(isUnpark);
-            Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v1));
         } catch (ParkingLotException e) {
             e.printStackTrace();
         }
@@ -215,9 +296,38 @@ public class ParkingLotFinalTest {
 
     }
 
+    @Test
+    public void GivenVehicle_WhenParkedWillUnparkWhenDriverIsOfHandicapType_ShouldReturnFalse(){
+        try {
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            boolean isUnpark=parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            Assert.assertFalse(isUnpark);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+
+        }
+
+
+    }
 
     @Test
-    public void get_Vehicle_Parked_when_DriverIS_ofBigVehicles(){
+    public void GivenVehicle_WhenParkedWillUnparkWhenDriverIsOfHandicapType_ShouldReturnMessage(){
+        try {
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            boolean isUnpark=parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+        }catch (ParkingLotException e) {
+           e.printStackTrace();
+           Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
+        }
+
+
+    }
+
+
+    @Test
+    public void GivenVehicle_WhenParkedWhenDriverIsOfBigVehicles_ShouldReturnEqual(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
@@ -233,31 +343,92 @@ public class ParkingLotFinalTest {
         }
 
     }
-
     @Test
-    public void Given_Vehicle_Parked_ShouldUnpark_when_DriverIS_ofBigVehicles() throws ParkingLotException {
+    public void GivenVehicle_WhenParkedWhenDriverIsOfBigVehicles_ShouldReturnNotEqual(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
             parkingLotSystem.unPark(v2,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
             parkingLotSystem.unPark(v1,parkedVehicleDetails2);
-            boolean isUnparked= parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
+            Assert.assertNotEquals(parkingLot1,parkingLotSystem.search_Vehicle(v2));
+        } catch (ParkingLotException e) {
+
+        }
+
+    }
+
+    @Test
+    public void GivenVehicle_WhenParkedShouldUnpark_WhenDriverISofBigVehicles_ShouldReturnTrue() throws ParkingLotException {
+        try{
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
+            boolean isUnparked=parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
             Assert.assertTrue(isUnparked);
 
         } catch (ParkingLotException e) {
             e.printStackTrace();
-            Assert.assertEquals(parkingLot0,parkingLotSystem.search_Vehicle(v2));
+
+
+        }
+
+    }
+
+    @Test
+    public void GivenVehicle_WhenParkedShouldUnpark_WhenDriverISofBigVehicles_ShouldReturnFalse() throws ParkingLotException {
+        try{
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
+            boolean isUnparked= parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            Assert.assertFalse(isUnparked);
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+    @Test
+    public void GivenVehicle_WhenParkedShouldUnpark_WhenDriverISofBigVehicles_ShouldReturnMessage() throws ParkingLotException {
+        try{
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails2);
+            boolean isUnparked= parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+
+
+        } catch (ParkingLotException e) {
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
+
         }
 
     }
 
 
 
+
     @Test
-    public void shoultReturn_vehicles_iInParkingLot_ParkedBefore30min(){
+    public void GivenVehicle_WhenParkedBefore30minInParkingLot_shouldReturnVehicle(){
         try {
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails1);
             parkingLot0.park_vehicle_slot(v2,parkedVehicleDetails1);
@@ -272,11 +443,25 @@ public class ParkingLotFinalTest {
 
     }
 
+    @Test
+    public void GivenVehicle_WhenParkedBefore30minInParkingLot_shouldReturnVehicleWithNotEualcondition(){
+        try {
+            parkingLot2.park_vehicle_slot(v1,parkedVehicleDetails2);
+            ArrayList<vehicle> parkedVehicles=parkingLot0.vehicleParkedBefore30min();
+            Assert.assertNotEquals(3,parkedVehicles.size());
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
 
 
 
     @Test
-    public void shouldReturn_vehicles_iInParkingLotSystem_ParkedBefore30min(){
+    public void GivenVehicle_WhenParkedBefore30minInParkingLotSystem_shouldReturnVehicle(){
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
             parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
@@ -295,10 +480,27 @@ public class ParkingLotFinalTest {
 
     }
 
+    @Test
+    public void GivenVehicle_WhenParkedBefore30minInParkingLotSystem_shouldReturnVehicleWithNotEqualCondition(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4,parkedVehicleDetails3);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v5,parkedVehicleDetails3);
+            ArrayList<ArrayList<ParkingSlot>> parkedVehiclesList=parkingLotSystem.vehicleParkedInSystemBefore30min();
+            System.out.println(parkedVehiclesList.size());
+            Assert.assertNotEquals(5,parkedVehiclesList.size());
+        } catch (ParkingLotException e) {
 
+        }
+
+
+
+    }
 
     @Test
-    public void shouldReturn_ListOfLocatnOfBMWCAR(){
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationOfBMWCAR(){
 
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
@@ -316,10 +518,28 @@ public class ParkingLotFinalTest {
         }
 
     }
+    @Test
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationOfBMWCARWithNotEqualCondition() {
+
+        try {
+            parkingLotSystem.park_Vehicle(v1, parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2, parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v3, parkedVehicleDetails3);
+            parkingLotSystem.park_Vehicle(v4, parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v5, parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v6, parkedVehicleDetails2);
+            ParkedVehicleAttribute parkedVehicleAttribute = new ParkedVehicleAttribute(ParkedVehicleAttribute.VehicleModel.BMW, null);
+            ArrayList<List<Integer>> lotlist = parkingLotSystem.getLotList(ParkingSlotSorting.BY_MODEL, parkedVehicleAttribute);
+            Assert.assertNotEquals(3, lotlist.size());
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Test
-    public void shouldReturn_ListOfLocationOfWhiteCar(){
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationOfWhiteCar(){
 
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
@@ -341,7 +561,30 @@ public class ParkingLotFinalTest {
     }
 
     @Test
-    public void shouldReturn_ListOfLocation_And_OtherDetails_OfBlue_TOYOTA_Car(){
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationOfWhiteCarWithNotEqualCondition(){
+
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails1);
+            parkingLotSystem.unPark(v2,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails3);
+            parkingLotSystem.unPark(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails1);
+            parkingLotSystem.park_Vehicle(v4, parkedVehicleDetails2);
+            ParkedVehicleAttribute parkedVehicleAttribute=new ParkedVehicleAttribute(null,ParkedVehicleAttribute.VehicleColor.White);
+            ArrayList<List<Integer>> lotlist = parkingLotSystem.getLotList(ParkingSlotSorting.BY_COLOR, parkedVehicleAttribute);
+            Assert.assertNotEquals(3,lotlist.size());
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    @Test
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationAndDetailsOfToyotaCar(){
 
         try {
             parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
@@ -368,7 +611,7 @@ public class ParkingLotFinalTest {
 
 
     @Test
-    public void shouldReturn_vehicles_ofTypeHandiCape_Parked_inLotBanddLotD_inParkingLot(){
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationOfVehicleOfHandicapDriversInLots(){
         try {
             parkingLotb.park_vehicle_slot(v1,parkedVehicleDetails3);
             parkingLotb.park_vehicle_slot(v2,parkedVehicleDetails3);
@@ -384,6 +627,7 @@ public class ParkingLotFinalTest {
         }
 
 
+
     }
 
 
@@ -391,7 +635,7 @@ public class ParkingLotFinalTest {
 
 
     @Test
-    public void should_ReturnAll_Vehicles_InParkingLotSystem(){
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationOfAllVehicles(){
         try {
             parkingLotSystem.park_Vehicle(v1, parkedVehicleDetails1);
             parkingLotSystem.park_Vehicle(v2, parkedVehicleDetails2);
@@ -409,4 +653,52 @@ public class ParkingLotFinalTest {
     }
 
 
+    @Test
+    public void GivenVehicle_WhenParkedAndSearchedInParkingLotSystem_shouldReturnEqual(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            ParkingLot searchParkingLot = parkingLotSystem.search_Vehicle(v1);
+            Assert.assertEquals(parkingLot0,searchParkingLot);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    @Test
+    public void GivenVehicle_WhenParkedAndSearchedInParkingLotSystem_shouldReturnNotEqual(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            ParkingLot searchParkingLot = parkingLotSystem.search_Vehicle(v1);
+            Assert.assertNotEquals(parkingLot1,searchParkingLot);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    @Test
+    public void GivenVehicle_WhenParkedAndSearchedInParkingLotSystem_shouldReturnMessageWhenNotFound(){
+        try {
+            parkingLotSystem.park_Vehicle(v1,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v2,parkedVehicleDetails2);
+            parkingLotSystem.park_Vehicle(v3,parkedVehicleDetails2);
+            ParkingLot searchParkingLot = parkingLotSystem.search_Vehicle(v4);
+
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_FOUND,e.type);
+        }
+
+
+
+    }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.Ankita.Parking_Lot_TC.ParkingLotObserVerNotifiaction" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-28T22:01:12" hostname="DESKTOP-FCSHS5L" time="1.766">
+<testsuite name="com.Ankita.Parking_Lot_TC.ParkingLotObserverNotification" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-05-04T20:38:11" hostname="DESKTOP-FCSHS5L" time="0.739">
   <properties/>
-  <testcase name="givenVehicleToUnPark_And_WhenParkingIsFull_Should_Inform_Observers" classname="com.Ankita.Parking_Lot_TC.ParkingLotObserVerNotifiaction" time="1.707"/>
-  <testcase name="givenVehicleToPark_And_WhenParkingIsFull_Should_Inform_Observers" classname="com.Ankita.Parking_Lot_TC.ParkingLotObserVerNotifiaction" time="0.058"/>
+  <testcase name="GivenVehicleToPark_AndWhenParkingIsFull_ShouldInformObservers" classname="com.Ankita.Parking_Lot_TC.ParkingLotObserverNotification" time="0.706"/>
+  <testcase name="GivenVehicleToUnPark_AndWhenParkingIsFull_ShouldInformObservers" classname="com.Ankita.Parking_Lot_TC.ParkingLotObserverNotification" time="0.032"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[com.Ankita.Parking_Lot_TC.ParkingLotException: Parking Lot System Full
 	at com.Ankita.Parking_Lot_TC.ParkingLotSystem.getLot(ParkingLotSystem.java:26)
-	at com.Ankita.Parking_Lot_TC.ParkingLotSystem.unPark(ParkingLotSystem.java:44)
-	at com.Ankita.Parking_Lot_TC.ParkingLotObserVerNotifiaction.givenVehicleToUnPark_And_WhenParkingIsFull_Should_Inform_Observers(ParkingLotObserVerNotifiaction.java:67)
+	at com.Ankita.Parking_Lot_TC.ParkingLotSystem.park_Vehicle(ParkingLotSystem.java:37)
+	at com.Ankita.Parking_Lot_TC.ParkingLotObserverNotification.GivenVehicleToPark_AndWhenParkingIsFull_ShouldInformObservers(ParkingLotObserverNotification.java:51)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -63,8 +63,8 @@
 	at java.base/java.lang.Thread.run(Thread.java:834)
 com.Ankita.Parking_Lot_TC.ParkingLotException: Parking Lot System Full
 	at com.Ankita.Parking_Lot_TC.ParkingLotSystem.getLot(ParkingLotSystem.java:26)
-	at com.Ankita.Parking_Lot_TC.ParkingLotSystem.park_Vehicle(ParkingLotSystem.java:37)
-	at com.Ankita.Parking_Lot_TC.ParkingLotObserVerNotifiaction.givenVehicleToPark_And_WhenParkingIsFull_Should_Inform_Observers(ParkingLotObserVerNotifiaction.java:52)
+	at com.Ankita.Parking_Lot_TC.ParkingLotSystem.unPark(ParkingLotSystem.java:44)
+	at com.Ankita.Parking_Lot_TC.ParkingLotObserverNotification.GivenVehicleToUnPark_AndWhenParkingIsFull_ShouldInformObservers(ParkingLotObserverNotification.java:66)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -86,6 +86,17 @@ public class ParkingLotServiceTest {
     }
 
     @Test
+    public void givenVehicle_WhenVehicleParkedInSlot_ShouldReturnSlotNumberIsNotEqual(){
+        try {
+            parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails2);
+            int slotNumber=parkingLot0.searchVehicle(v1);
+            Assert.assertNotEquals(2,slotNumber);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void givenVehicleWhichIsNotPresentInLot_WhenUnParked_ShouldAMessage(){
         try {
             parkingLot0.park_vehicle_slot(v3,parkedVehicleDetails3);
@@ -101,22 +112,24 @@ public class ParkingLotServiceTest {
     }
 
     @Test
-    public void givenAVehicles_WhenParkingLotFull_ShouldThrowMessage(){
+    public void GivenAVehicles_WhenParkingLotFull_ShouldThrowMessage(){
         try {
             parkingLot0.park_vehicle_slot(v3,parkedVehicleDetails1);
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails3);
             parkingLot0.park_vehicle_slot(v5,parkedVehicleDetails2);
             parkingLot0.park_vehicle_slot(v6,parkedVehicleDetails3);
+
         } catch (ParkingLotException e) {
             e.printStackTrace();
             Assert.assertEquals(ParkingLotException.ExceptionType.PARKING_FULL,e.type);
+
         }
 
 
     }
 
     @Test
-    public void givenCar_When_ParkedInTheGivenParkingLotShouldReturnTrue(){
+    public void GivenVehicle_WhenParkedIn_TheGivenParkingLot_ShouldReturnTrue(){
         try {
             boolean isParked=parkingLot0.park_vehicle_slot(v3,parkedVehicleDetails1);
             Assert.assertTrue(isParked);
@@ -127,7 +140,7 @@ public class ParkingLotServiceTest {
     }
 
     @Test
-    public void givenCar_When_UnParkedInTheGivenParkingLotShouldReturnTrue(){
+    public void GivenVehicle_WhenUnParkedInTheGivenParkingLot_ShouldReturnTrue(){
         try {
             boolean isParked=parkingLot0.park_vehicle_slot(v3,parkedVehicleDetails1);
             boolean isUnParked=parkingLot0.unPark(v3);
@@ -138,7 +151,7 @@ public class ParkingLotServiceTest {
     }
 
     @Test
-    public void shouldReturn_ListOfLocation_And_OtherDetails_OfBlue_TOYOTA_Car(){
+    public void GivenVehicle_WhenParked_ShouldReturnListOfLocationAndDetailsOfToyotaCar(){
 
         try {
             parkingLot0.park_vehicle_slot(v1,parkedVehicleDetails2);
@@ -164,14 +177,8 @@ public class ParkingLotServiceTest {
     }
 
 
-
-
-
-
-
-
     @Test
-    public void should_ReturnAll_Vehicles_InParkingLotSystem() {
+    public void GivenVehicle_WhenParkedInParkingLot_ShouldReturnListOfLocationOfAllVehicles() {
         try {
             parkingLot0.park_vehicle_slot(v1, parkedVehicleDetails1);
             parkingLot0.park_vehicle_slot(v2, parkedVehicleDetails2);
